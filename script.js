@@ -49,7 +49,6 @@ function showBook(item) {
     book.appendChild(deleteBtn)
     deleteBtn.textContent = "Delete this book"
     deleteBtn.addEventListener("click", () => {
-        console.log(item.id)
         removeBookFromLibrary(item.id)
         removeDisplay(item.id)
     })
@@ -64,6 +63,34 @@ function removeDisplay(id) {
     container.removeChild(book)
 }
 
+
+//Dialog for adding new book
+const mydialog = document.getElementById("my-dialog")
+
+const addBookBtn = document.getElementById("addBook")
+addBookBtn.addEventListener("click", () => {
+    mydialog.showModal()
+})
+
+const submitBtn = document.getElementById("submit")
+submitBtn.addEventListener("click", (e) => {
+    mydialog.close();
+
+    //Add book to library
+    const authorInput = document.getElementById("author").value
+    const titleInput = document.getElementById("title").value
+    const numofpageInput = document.getElementById("numofpage").value
+    addBookToLibrary(authorInput, titleInput, numofpageInput)
+
+    //Reset form
+    const form = document.getElementById("addnewbook")
+    form.reset()
+
+    e.preventDefault()
+})
+
+
+//Sample data
 addBookToLibrary("Nam Cao", "Chi Dau", 12)
 addBookToLibrary("To Hoai", "De men phieu luu ky", 30)
 addBookToLibrary("Vu Trong Phung", "So do", 20)
