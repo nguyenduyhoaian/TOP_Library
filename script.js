@@ -8,27 +8,40 @@ function Book(author, title, numOfPage) {
 }
 
 Book.prototype.mark = function () {
-    this.isRead ? this.isRead = false : this.isRead = true
+    this.isRead = this.isRead ? this.isRead = false : this.isRead = true
 }
 
-function addBookToLibrary(book, library) {
-    library.push(book)
+function addBookToLibrary(author, title, numOfPage) {
+    const newBook = new Book(author, title, numOfPage)
+    library.push(newBook)
 }
 
-const bookSample1 = new Book("Nam Cao", "Chi Dau", 12)
-const bookSample2 = new Book("To Hoai", "De men phieu luu ky", 30)
-
-addBookToLibrary(bookSample1, library)
-addBookToLibrary(bookSample2, library)
-
-console.log(library)
+addBookToLibrary("Nam Cao", "Chi Dau", 12)
+addBookToLibrary("To Hoai", "De men phieu luu ky", 30)
+addBookToLibrary("Vu Trong Phung", "So do", 20)
 
 const container = document.querySelector(".library")
 for (let item of library) {
     const book = document.createElement("div")
     container.appendChild(book)
     book.classList.add("book")
-    book.textContent = `author: ${item.author}, title: ${item.title} - number of page: ${item.numOfPage}`
+
+    const author = document.createElement("div")
+    book.appendChild(author)
+    author.textContent = `Author: ${item.author}`
+
+    const title = document.createElement("div")
+    book.appendChild(title)
+    title.textContent = `Title: ${item.title} `
+
+    const numOfPage = document.createElement("div")
+    book.appendChild(numOfPage)
+    numOfPage.textContent = `Number of page: ${item.numOfPage}`
+
+    const deleteBtn = document.createElement("button")
+    book.appendChild(deleteBtn)
+    deleteBtn.textContent = "Delete this book"
+
 }
 const addBtn = document.createElement("button")
 container.appendChild(addBtn)
@@ -36,3 +49,10 @@ addBtn.textContent = 'Add book'
 addBtn.addEventListener("click", (e) => addBookDialog.showModal())
 
 const addBookDialog = document.querySelector("#my-dialog")
+const dialogSubmit = document.querySelector("#addBookBtn")
+dialogSubmit.addEventListener("click", even =>{
+even.preventDefault();
+console.log(author.value)
+console.log('dialog has been submit')
+
+})
