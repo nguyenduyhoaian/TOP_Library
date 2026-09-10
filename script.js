@@ -63,7 +63,6 @@ function removeDisplay(id) {
     container.removeChild(book)
 }
 
-
 //Dialog for adding new book
 const mydialog = document.getElementById("my-dialog")
 
@@ -88,7 +87,6 @@ submitBtn.addEventListener("click", (e) => {
 
     e.preventDefault()
 })
-
 
 //Sample data
 addBookToLibrary("Nam Cao", "Chi Dau", 12)
