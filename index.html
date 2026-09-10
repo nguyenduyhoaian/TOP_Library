@@ -10,7 +10,7 @@
 
 <body>
     <h1> My Library</h1>
-    <div class="library"></div>
+    <div id="library"></div>
 
 
 
@@ -18,7 +18,7 @@
 
 
     <dialog id="my-dialog">
-        <form id="addnewbook">
+        <form id="addnewbook" action="index.html" method="dialog">
 
             <label for="author">Author:</label>
             <input type="text" id="author" name="author">
@@ -26,13 +26,13 @@
             <label for="title">Title:</label>
             <input type="text" id="title" name="title">
 
-            <label for="numofpage">Title:</label>
+            <label for="numofpage">Num of page:</label>
             <input type="text" id="numofpage" name="numofpage">
 
             <label for="isread">Is read:</label>
             <input type="checkbox" id="isread" name="isread">
             <div id="submit-button">
-                <button id="addBookBtn" type="submit" commandfor="my-dialog" command="close">Add</button>
+                <button id="submitBtn" type="submit" commandfor="my-dialog" command="close">Add</button>
                 <button type="button" commandfor="my-dialog" command="close">Close</button>
             </div>
         </form>

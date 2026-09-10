@@ -1,4 +1,6 @@
-const library = []
+let library = []
+const container = document.getElementById("library")
+
 function Book(author, title, numOfPage) {
     this.author = author;
     this.title = title;
@@ -14,15 +16,12 @@ Book.prototype.mark = function () {
 function addBookToLibrary(author, title, numOfPage) {
     const newBook = new Book(author, title, numOfPage)
     library.push(newBook)
+    showBook(newBook)
 }
 
-addBookToLibrary("Nam Cao", "Chi Dau", 12)
-addBookToLibrary("To Hoai", "De men phieu luu ky", 30)
-addBookToLibrary("Vu Trong Phung", "So do", 20)
-
-const container = document.querySelector(".library")
-for (let item of library) {
+function showBook(item) {
     const book = document.createElement("div")
+    book.setAttribute("id", item.id)
     container.appendChild(book)
     book.classList.add("book")
 
@@ -38,21 +37,33 @@ for (let item of library) {
     book.appendChild(numOfPage)
     numOfPage.textContent = `Number of page: ${item.numOfPage}`
 
+    const readBtn = document.createElement("button")
+    book.appendChild(readBtn)
+    readBtn.textContent = item.isRead ? "Read" : "Unread"
+    readBtn.addEventListener("click", () => {
+        item.mark()
+        readBtn.textContent = item.isRead ? "Read" : "Unread"
+    })
+
     const deleteBtn = document.createElement("button")
     book.appendChild(deleteBtn)
     deleteBtn.textContent = "Delete this book"
-
+    deleteBtn.addEventListener("click", () => {
+        console.log(item.id)
+        removeBookFromLibrary(item.id)
+        removeDisplay(item.id)
+    })
 }
-const addBtn = document.createElement("button")
-container.appendChild(addBtn)
-addBtn.textContent = 'Add book'
-addBtn.addEventListener("click", (e) => addBookDialog.showModal())
 
-const addBookDialog = document.querySelector("#my-dialog")
-const dialogSubmit = document.querySelector("#addBookBtn")
-dialogSubmit.addEventListener("click", even =>{
-even.preventDefault();
-console.log(author.value)
-console.log('dialog has been submit')
+function removeBookFromLibrary(id) {
+    library = library.filter(book => book.id !== id)
+}
 
-})
+function removeDisplay(id) {
+    const book = document.getElementById(id)
+    container.removeChild(book)
+}
+
+addBookToLibrary("Nam Cao", "Chi Dau", 12)
+addBookToLibrary("To Hoai", "De men phieu luu ky", 30)
+addBookToLibrary("Vu Trong Phung", "So do", 20)
