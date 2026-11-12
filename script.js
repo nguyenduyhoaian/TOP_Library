@@ -89,6 +89,6 @@ submitBtn.addEventListener("click", (e) => {
 })
 
 //Sample data
-addBookToLibrary("Nam Cao", "Chi Dau", 12)
-addBookToLibrary("To Hoai", "De men phieu luu ky", 30)
-addBookToLibrary("Vu Trong Phung", "So do", 20)
+addBookToLibrary("Nam Cao", "Chị Dậu", 12)
+addBookToLibrary("Tô Hoài", "Dế mèn phiêu lưu ký", 30)
+addBookToLibrary("Vũ Trọng Phụng", "Số đỏ", 20)
